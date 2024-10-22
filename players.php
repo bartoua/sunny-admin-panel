@@ -13,7 +13,7 @@ $filter_col = filter_input(INPUT_GET, 'filter_col');
 $order_by = filter_input(INPUT_GET, 'order_by');
 
 // Per page limit for pagination.
-$pagelimit = 15;
+$pagelimit = 30;
 
 // Get current page.
 $page = filter_input(INPUT_GET, 'page');
