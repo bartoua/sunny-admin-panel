@@ -31,7 +31,7 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstanceFivem();
-$select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job2', 'firstSpawn');
+$select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job2', 'firstSpawn', 'lastconnexion');
 
 //Start building query according to input parameters.
 // If search string
@@ -115,6 +115,7 @@ if ($order_by == 'Desc') {
                 <th width="20%">Comptes</th>
                 <th width="20%">Jobs</th>
                 <th width="10%">Age du perso</th>
+                <th width="10%">Dernière connexion</th>
             </tr>
         </thead>
         <tbody>
@@ -125,6 +126,7 @@ if ($order_by == 'Desc') {
                 <td><?php echo xss_clean($row['accounts']); ?></td>
                 <td><?php echo xss_clean($row['job'] . " / " . $row['job2']); ?></td>
                 <td><?php echo xss_clean($row['firstSpawn']); ?></td>
+                <td><?php echo xss_clean($row['lastconnexion']); ?></td>
                 <td>
                     <a href="edit_customer.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
                     <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="glyphicon glyphicon-trash"></i></a>
