@@ -17,9 +17,9 @@ require_once BASE_PATH . '/helpers/helpers.php';
  */
 
 define('DB_HOST', "localhost");
-define('DB_USER', "root");
-define('DB_PASSWORD', "root");
-define('DB_NAME', "corephpadmin");
+define('DB_USER', "staff");
+define('DB_PASSWORD', "d.NmBAwSr[zg7s9t=h/<6+");
+define('DB_NAME', "staff");
 define('DB_NAME_FIVEM', "fxserveur");
 
 /**
