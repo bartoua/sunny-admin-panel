@@ -59,12 +59,7 @@ include BASE_PATH . '/includes/header.php';
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Customers</h1>
-        </div>
-        <div class="col-lg-6">
-            <div class="page-action-links text-right">
-                <a href="add_customer.php?operation=create" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add new</a>
-            </div>
+            <h1 class="page-header">Joueurs</h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
