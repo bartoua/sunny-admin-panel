@@ -13,8 +13,15 @@ if (!empty($identifier)) {
         $db->where('firstname', $identifier , '=');
     }
 
+    $page = filter_input(INPUT_GET, 'page');
+    if (!$page) {
+        $page = 1;
+    }
+    // Set pagination limit
+    $db->pageLimit = $pagelimit;
+
     // Get result of the query.
-    $row = $db->arraybuilder();
+    $row = $db->arraybuilder()->paginate('users', $page, $select);;
 echo '<pre>';
 var_dump($row);
 echo '</pre>';
