@@ -37,7 +37,7 @@ if (!empty($identifier)) {
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($row as $k => $v): ?>
+    <?php foreach ($row[0] as $k => $v): ?>
         <tr>
             <td><?php echo xss_clean($row['$k']); ?></td>
             <td><?php echo xss_clean($row['$v']); ?></td>
