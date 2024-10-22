@@ -53,13 +53,13 @@ include_once('includes/header.php');
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $numPlayers; ?></div>
-                            <div>Customers</div>
+                            <div>Joueurs</div>
                         </div>
                     </div>
                 </div>
-                <a href="customers.php">
+                <a href="players.php">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
+                        <span class="pull-left">Liste des joueurs</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
