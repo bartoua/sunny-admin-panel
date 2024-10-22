@@ -128,8 +128,7 @@ if ($order_by == 'Desc') {
                 <td><?php echo xss_clean($row['firstSpawn']); ?></td>
                 <td><?php echo xss_clean($row['lastconnexion']); ?></td>
                 <td>
-                    <a href="edit_customer.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="detail_player.php?identifier=<?php echo $row['identifier']; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
                 </td>
             </tr>
             <!-- Delete Confirmation Modal -->
