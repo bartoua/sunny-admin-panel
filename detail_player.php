@@ -9,7 +9,7 @@ if (!empty($identifier)) {
     $select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job_grade', 'job2', 'job2_grade',
         '`group`', 'dateofbirth', 'sex', 'vote', 'have_bracelet', 'matricule', 'firstSpawn', 'lastconnexion');
     if ($identifier) {
-        $db->where('firstname', $identifier , '=');
+        $db->where('identifier', $identifier , '=');
     }
 
     // Set pagination limit
