@@ -18,36 +18,29 @@ if (!empty($identifier)) {
     $row = $db->arraybuilder()->paginate('users', 1, $select);
     $total_pages = $db->totalPages;
 
-echo '<pre>';
-var_dump($row);
-echo '</pre>';
-die();
     include BASE_PATH . '/includes/header.php';
     ?>
+    <!-- Main container -->
+    <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1 class="page-header">Joueurs</h1>
+        </div>
+    </div>
+    <?php include BASE_PATH . '/includes/flash_messages.php';?>
 
 <table class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th width="5%">Licence</th>
-        <th width="20%">Nom</th>
-        <th width="20%">Comptes</th>
-        <th width="20%">Jobs</th>
-        <th width="10%">Age du perso</th>
-        <th width="10%">Dernière connexion</th>
+        <th width="5%">Clef</th>
+        <th width="20%">Valeur</th>
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($rows as $row): ?>
+    <?php foreach ($row as $k => $v): ?>
         <tr>
-            <td><?php echo $row['identifier']; ?></td>
-            <td><?php echo xss_clean($row['firstname'] . ' ' . $row['lastname']); ?></td>
-            <td><?php echo xss_clean($row['accounts']); ?></td>
-            <td><?php echo xss_clean($row['job'] . " / " . $row['job2']); ?></td>
-            <td><?php echo xss_clean($row['firstSpawn']); ?></td>
-            <td><?php echo xss_clean($row['lastconnexion']); ?></td>
-            <td>
-                <a href="detail_player.php?identifier=<?php echo $row['identifier']; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-            </td>
+            <td><?php echo xss_clean($row['$k']); ?></td>
+            <td><?php echo xss_clean($row['$v']); ?></td>
         </tr>
         <!-- //Delete Confirmation Modal -->
     <?php endforeach;?>
