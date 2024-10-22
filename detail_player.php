@@ -15,7 +15,9 @@ if (!empty($identifier)) {
 
     // Get result of the query.
     $row = $db->arraybuilder();
+echo '<pre>';
 var_dump($row);
+echo '</pre>';
 die();
     include BASE_PATH . '/includes/header.php';
     ?>
