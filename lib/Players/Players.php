@@ -25,7 +25,7 @@ class Players
             'firstname' => 'Prénom',
             'lastname' => 'Nom de famille',
             'lastconnexion' => 'Dernière connexion',
-            'updated_at' => 'Age du perso'
+            'firstSpawn' => 'Age du perso'
         ];
 
         return $ordering;
