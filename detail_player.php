@@ -6,22 +6,18 @@ require_once BASE_PATH . '/includes/auth_validate.php';
 $identifier = filter_input(INPUT_GET, 'identifier');
 if (!empty($identifier)) {
     $db = getDbInstanceFivem();
-    $pagelimit = 30;
     $select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job_grade', 'job2', 'job2_grade',
         '`group`', 'dateofbirth', 'sex', 'vote', 'have_bracelet', 'matricule', 'firstSpawn', 'lastconnexion');
     if ($identifier) {
         $db->where('firstname', $identifier , '=');
     }
 
-    $page = filter_input(INPUT_GET, 'page');
-    if (!$page) {
-        $page = 1;
-    }
     // Set pagination limit
-    $db->pageLimit = $pagelimit;
-
+    $db->pageLimit = 1;
     // Get result of the query.
-    $row = $db->arraybuilder()->paginate('users', $page, $select);;
+    $row = $db->arraybuilder()->paginate('users', 1, $select);
+    $total_pages = $db->totalPages;
+
 echo '<pre>';
 var_dump($row);
 echo '</pre>';
