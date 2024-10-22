@@ -39,8 +39,8 @@ if (!empty($identifier)) {
     <tbody>
     <?php foreach ($row[0] as $k => $v): ?>
         <tr>
-            <td><?php echo xss_clean($row['$k']); ?></td>
-            <td><?php echo xss_clean($row['$v']); ?></td>
+            <td><?php echo xss_clean($k); ?></td>
+            <td><?php echo xss_clean($v); ?></td>
         </tr>
         <!-- //Delete Confirmation Modal -->
     <?php endforeach;?>
