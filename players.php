@@ -4,7 +4,7 @@ require_once 'config/config.php';
 require_once BASE_PATH . '/includes/auth_validate.php';
 
 // Costumers class
-require_once BASE_PATH . '/lib/Costumers/Costumers.php';
+require_once BASE_PATH . '/lib/Players/Players.php';
 $players = new Players();
 
 // Get Input data from query string
