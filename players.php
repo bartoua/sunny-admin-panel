@@ -99,12 +99,6 @@ if ($order_by == 'Desc') {
         </form>
     </div>
     <hr>
-    <!-- //Filters -->
-
-
-    <div id="export-section">
-        <a href="export_customers.php"><button class="btn btn-sm btn-primary">Export to CSV <i class="glyphicon glyphicon-export"></i></button></a>
-    </div>
 
     <!-- Table -->
     <table class="table table-striped table-bordered table-condensed">
