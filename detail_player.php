@@ -50,8 +50,9 @@ die();
 </table>
 
     <!-- //Main container -->
-<?php include BASE_PATH . '/includes/footer.php';?>
+<?php include BASE_PATH . '/includes/footer.php';
 
 } else {
     header('Location: index.php');
 }
+?>
