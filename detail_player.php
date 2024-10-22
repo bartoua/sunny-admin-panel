@@ -8,7 +8,7 @@ if (!empty($identifier)) {
     $db = getDbInstanceFivem();
     $pagelimit = 30;
     $select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job_grade', 'job2', 'job2_grade',
-        'group', 'dateofbirth', 'sex', 'vote', 'have_bracelet', 'matricule', 'firstSpawn', 'lastconnexion');
+        '`group`', 'dateofbirth', 'sex', 'vote', 'have_bracelet', 'matricule', 'firstSpawn', 'lastconnexion');
     if ($identifier) {
         $db->where('firstname', $identifier , '=');
     }
