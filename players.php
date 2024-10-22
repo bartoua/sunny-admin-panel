@@ -5,7 +5,7 @@ require_once BASE_PATH . '/includes/auth_validate.php';
 
 // Costumers class
 require_once BASE_PATH . '/lib/Costumers/Costumers.php';
-$costumers = new Costumers();
+$players = new Players();
 
 // Get Input data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
@@ -77,7 +77,7 @@ include BASE_PATH . '/includes/header.php';
             <label for="input_order">Order By</label>
             <select name="filter_col" class="form-control">
                 <?php
-foreach ($costumers->setOrderingValues() as $opt_value => $opt_name):
+foreach ($players->setOrderingValues() as $opt_value => $opt_name):
 	($order_by === $opt_value) ? $selected = 'selected' : $selected = '';
 	echo ' <option value="' . $opt_value . '" ' . $selected . '>' . $opt_name . '</option>';
 endforeach;
@@ -111,7 +111,7 @@ if ($order_by == 'Desc') {
         <thead>
             <tr>
                 <th width="5%">Licence</th>
-                <th width="45%">Nom</th>
+                <th width="20%">Nom</th>
                 <th width="20%">Comptes</th>
                 <th width="20%">Jobs</th>
                 <th width="10%">Age du perso</th>
