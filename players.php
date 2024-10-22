@@ -110,20 +110,21 @@ if ($order_by == 'Desc') {
     <table class="table table-striped table-bordered table-condensed">
         <thead>
             <tr>
-                <th width="5%">ID</th>
-                <th width="45%">Name</th>
-                <th width="20%">Gender</th>
-                <th width="20%">Phone</th>
-                <th width="10%">Actions</th>
+                <th width="5%">Licence</th>
+                <th width="45%">Nom</th>
+                <th width="20%">Comptes</th>
+                <th width="20%">Jobs</th>
+                <th width="10%">Age du perso</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($rows as $row): ?>
             <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo xss_clean($row['f_name'] . ' ' . $row['l_name']); ?></td>
-                <td><?php echo xss_clean($row['gender']); ?></td>
-                <td><?php echo xss_clean($row['phone']); ?></td>
+                <td><?php echo $row['identifier']; ?></td>
+                <td><?php echo xss_clean($row['firstname'] . ' ' . $row['lastname']); ?></td>
+                <td><?php echo xss_clean($row['accounts']); ?></td>
+                <td><?php echo xss_clean($row['job'] . " / " . $row['job2']); ?></td>
+                <td><?php echo xss_clean($row['firstSpawn']); ?></td>
                 <td>
                     <a href="edit_customer.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
                     <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="glyphicon glyphicon-trash"></i></a>
