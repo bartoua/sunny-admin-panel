@@ -113,6 +113,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
                     <td><?php echo xss_clean($employe["label"]); ?></td>
                     <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
                 </tr>
+                <?php } ?>
             </tbody>
         </table>
     <?php } ?>
