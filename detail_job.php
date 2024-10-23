@@ -16,16 +16,6 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     // Set pagination limit
     $db->pageLimit = 30;
 
-    // Nice name for job
-    $selectjob = array('label');
-    $db->where('name', $job);
-    $job_label = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
-
-    $selectgrade = array('label');
-    $db->where('job_name', $job);
-    $db->where('grade', $employes[0]["job_grade"]);
-    $job_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
-
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
 
     include BASE_PATH . '/includes/header.php';
