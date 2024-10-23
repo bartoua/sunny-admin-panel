@@ -3,40 +3,24 @@ session_start();
 require_once 'config/config.php';
 require_once BASE_PATH . '/includes/auth_validate.php';
 
-$identifier = filter_input(INPUT_GET, 'identifier');
-if (!empty($identifier)) {
+$job = filter_input(INPUT_GET, 'job');
+if (!empty($job) and str_starts_with($job, "sunnygroupe")) {
+
     $db = getDbInstanceFivem();
-    $select = array('identifier', 'firstname', 'lastname', 'accounts', 'job', 'job_grade', 'job2', 'job2_grade',
-        '`group`', 'dateofbirth', 'sex', 'vote', 'have_bracelet', 'matricule', 'firstSpawn', 'lastconnexion');
-    if ($identifier) {
-        $db->where('identifier', $identifier , '=');
-    }
+    $db->pageLimit = 3000;
+
+    $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion", "u.job2");
+    $db->join("users u", "u.job_grade=j.grade");
+    $db->joinWhere("users u", "u.job2 = j.job_name");
+    $db->where("u.job2", $job);
+    $db->orderBy("u.job_grade","desc");
+    $employes2 = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
+
+    $selectcoffre = array("name", "data");
+    $db->where("name", 'society_' . $job . '%', "like");
+    $coffres = $db->arraybuilder()->paginate('ox_inventory', 1, $selectcoffre);
 
     // Set pagination limit
-    $db->pageLimit = 1;
-    // Get result of the query.
-    $row = $db->arraybuilder()->paginate('users', 1, $select);
-
-
-    // Nice name for job
-    $selectjob = array('label');
-    $db->where('name', $row[0]["job"]);
-    $job = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
-
-    $selectgrade = array('label');
-    $db->where('job_name', $row[0]["job"]);
-    $db->where('grade', $row[0]["job_grade"]);
-    $job_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
-
-    // Nice name for job2
-    $selectjob = array('label');
-    $db->where('name', $row[0]["job2"]);
-    $job2 = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
-
-    $selectgrade = array('label');
-    $db->where('job_name', $row[0]["job2"]);
-    $db->where('grade', $row[0]["job2_grade"]);
-    $job2_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
 
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
 
@@ -46,106 +30,60 @@ if (!empty($identifier)) {
     <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Joueur : <?php echo xss_clean($row[0]["firstname"] . " " . $row[0]["lastname"]); ?></h1>
+            <h1 class="page-header">Entreprise : <?php echo xss_clean($employes[0]["job"]); ?></h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
 
+    <h2>Job secondaire</h2>
     <table class="table table-striped table-bordered table-condensed">
         <thead>
         <tr>
-            <th width="5%">Clef</th>
-            <th width="20%">Valeur</th>
-            <th width="5%">Editer/Détail</th>
+            <th width="5%">License</th>
+            <th width="5%">Prénom</th>
+            <th width="5%">Nom de famille</th>
+            <th width="5%">Grade</th>
+            <th width="5%">Dernière connexion</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>License</td>
-            <td><?php echo xss_clean($row[0]["identifier"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Prénom</td>
-            <td><?php echo xss_clean($row[0]["firstname"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Nom de famille</td>
-            <td><?php echo xss_clean($row[0]["lastname"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Argent liquide</td>
-            <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["money"]), "USD")); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Argent sale</td>
-            <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["black_money"]), "USD")); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Compte en banque</td>
-            <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["bank"]), "USD")); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Métier principal</td>
-            <td><a href="/detail_job.php?job=<?php echo xss_clean($row[0]["job"]) ?>"><?php echo xss_clean($job); ?></a> / <?php echo xss_clean($job_grade); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Métier secondaire</td>
-            <?php if(str_starts_with(xss_clean($row[0]["job2"]), "sunnygroupe")) { ?>
-                <td><a href="/detail_groupe.php?job=<?php echo xss_clean($row[0]["job2"]) ?>"><?php echo xss_clean($job2); ?></a> / <?php echo xss_clean($job2_grade); ?></td>
-            <?php } else { ?>
-                <td><a href="/detail_job.php?job=<?php echo xss_clean($row[0]["job2"]) ?>"><?php echo xss_clean($job2); ?></a> / <?php echo xss_clean($job2_grade); ?></td>
-            <?php } ?>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Grade staff</td>
-            <td><?php echo xss_clean($row[0]["group"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Date de naissance</td>
-            <td><?php echo xss_clean($row[0]["dateofbirth"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Sexe</td>
-            <td><?php echo xss_clean(($row[0]["sex"] == "M" ? "Homme" : "Femme")); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Vote</td>
-            <td><?php echo xss_clean($row[0]["vote"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Bracelet</td>
-            <td><?php echo xss_clean(($row[0]["have_bracelet"] == 0 ? "Oui" : "Non")); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Matricule</td>
-            <td><?php echo xss_clean($row[0]["matricule"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Création du personnage</td>
-            <td><?php echo xss_clean($row[0]["firstSpawn"]); ?></td>
-            <td>Coucou</td>
-        </tr>
-        <tr>
-            <td>Dernière connexion</td>
-            <td><?php echo xss_clean($row[0]["lastconnexion"]); ?></td>
-            <td>Coucou</td>
-        </tr>
+        <?php foreach ($employes2 as $employe) { ?>
+            <tr>
+
+                <td><?php echo xss_clean($employe["identifier"]); ?></td>
+                <td><?php echo xss_clean($employe["firstname"]); ?></td>
+                <td><?php echo xss_clean($employe["lastname"]); ?></td>
+                <td><?php echo xss_clean($employe["label"]); ?></td>
+                <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
+            </tr>
+        <?php } ?>
+        <!--<pre><?php var_dump($employes);?></pre>-->
         </tbody>
     </table>
+
+    <h2>Coffres</h2>
+    <?php foreach ($coffres as $coffre) { ?>
+        <h3><?php echo $coffre["name"]; ?></h3>
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th width="5%">Emplacement</th>
+                <th width="5%">Item</th>
+                <th width="5%">Quantité</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach (json_decode($coffre["data"], true) as $item) { ?>
+                <!--<pre><?php var_dump($item);?></pre>-->
+                <tr>
+                    <td><?php echo xss_clean($item["slot"]); ?></td>
+                    <td><?php echo xss_clean($item["name"]); ?></td>
+                    <td><?php echo xss_clean($item["count"]); ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    <?php } ?>
 
     <!-- //Main container -->
     <?php include BASE_PATH . '/includes/footer.php';
