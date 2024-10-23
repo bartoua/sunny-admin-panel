@@ -60,13 +60,13 @@ include_once('includes/header.php');
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $numEntreprises; ?></div>
-                            <div>Entreprise</div>
+                            <div>Entreprises</div>
                         </div>
                     </div>
                 </div>
-                <a href="players.php">
+                <a href="entreprises.php">
                     <div class="panel-footer">
-                        <span class="pull-left">Liste des joueurs</span>
+                        <span class="pull-left">Liste des Entreprises</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
@@ -86,9 +86,9 @@ include_once('includes/header.php');
                         </div>
                     </div>
                 </div>
-                <a href="players.php">
+                <a href="groupes.php">
                     <div class="panel-footer">
-                        <span class="pull-left">Liste des joueurs</span>
+                        <span class="pull-left">Liste des groupes</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
