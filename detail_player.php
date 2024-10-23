@@ -46,7 +46,7 @@ if (!empty($identifier)) {
     <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Joueurs</h1>
+            <h1 class="page-header">Joueur <?php echo xss_clean($row[0]["firstname"] . " " . $row[0]["lastname"]); ?></h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
