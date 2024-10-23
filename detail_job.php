@@ -8,6 +8,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db = getDbInstanceFivem();
     $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion");
     $db->join("users u", "u.job_grade=j.grade");
+    $db->joinWhere("users u", "u.job = j.job_name");
     $db->where("u.job", $job);
     $employes = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
     print_r($employes);
