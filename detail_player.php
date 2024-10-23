@@ -55,17 +55,17 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Argent liquide</td>
-        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["money"]); ?></td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])->money); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
         <td>Argent sale</td>
-        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["black_money"]); ?></td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])->black_money); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
         <td>Compte en banque</td>
-        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["bank"]); ?></td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])->bank); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
