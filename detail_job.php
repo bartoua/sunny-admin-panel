@@ -20,6 +20,10 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db->orderBy("u.job_grade","desc");
     $employes2 = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
 
+    $selectcoffre = array("name", "data");
+    $db->where("name", "society" . $job . "%", "like");
+    $coffres = $db->arraybuilder()->paginate('ox_inventory', 1, $selectcoffre);
+
     // Set pagination limit
     $db->pageLimit = 30;
 
@@ -85,6 +89,32 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
             </tr>
         <?php } ?>
         <!--<pre><?php var_dump($employes);?></pre>-->
+        </tbody>
+    </table>
+
+    <h2>Coffres</h2>
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th width="5%">License</th>
+            <th width="5%">Prénom</th>
+            <th width="5%">Nom de famille</th>
+            <th width="5%">Grade</th>
+            <th width="5%">Dernière connexion</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($employes2 as $employe) { ?>
+            <tr>
+
+                <td><?php echo xss_clean($employe["identifier"]); ?></td>
+                <td><?php echo xss_clean($employe["firstname"]); ?></td>
+                <td><?php echo xss_clean($employe["lastname"]); ?></td>
+                <td><?php echo xss_clean($employe["label"]); ?></td>
+                <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
+            </tr>
+        <?php } ?>
+        <pre><?php var_dump($coffres);?></pre>
         </tbody>
     </table>
 
