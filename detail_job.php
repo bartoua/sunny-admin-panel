@@ -5,7 +5,10 @@ require_once BASE_PATH . '/includes/auth_validate.php';
 
 $job = filter_input(INPUT_GET, 'job');
 if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
+
     $db = getDbInstanceFivem();
+    $db->pageLimit = 30;
+
     $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion", "u.job");
     $db->join("users u", "u.job_grade=j.grade");
     $db->joinWhere("users u", "u.job = j.job_name");
@@ -25,7 +28,6 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $coffres = $db->arraybuilder()->paginate('ox_inventory', 1, $selectcoffre);
 
     // Set pagination limit
-    $db->pageLimit = 30;
 
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
 
