@@ -92,12 +92,16 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Métier principal</td>
-        <td><a href="/detail_groupe.php?job=<?php echo xss_clean($row[0]["job"]) ?>"><?php echo xss_clean($job); ?> / <?php echo xss_clean($job_grade); ?></a></td>
+        <td><a href="/detail_job.php?job=<?php echo xss_clean($row[0]["job"]) ?>"><?php echo xss_clean($job); ?></a> / <?php echo xss_clean($job_grade); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
         <td>Métier secondaire</td>
-        <td><?php echo xss_clean($job2 . " / " . $job2_grade); ?></td>
+        <?php if(str_starts_with(xss_clean($row[0]["job2"]), "sunnygroupe")) { ?>
+            <td><a href="/detail_groupe.php?job=<?php echo xss_clean($row[0]["job2"]) ?>"><?php echo xss_clean($job2); ?></a> / <?php echo xss_clean($job2_grade); ?></td>
+        <?php } else { ?>
+            <td><a href="/detail_job.php?job=<?php echo xss_clean($row[0]["job2"]) ?>"><?php echo xss_clean($job2); ?></a> / <?php echo xss_clean($job2_grade); ?></td>
+        <?php } ?>
         <td>Coucou</td>
     </tr>
     <tr>
