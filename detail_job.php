@@ -15,9 +15,6 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
 
     // Set pagination limit
     $db->pageLimit = 30;
-    // Get result of the query.
-    $employes = $db->arraybuilder()->paginate('users', 1, $select);
-
 
     // Nice name for job
     $selectjob = array('label');
@@ -45,7 +42,6 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     <table class="table table-striped table-bordered table-condensed">
         <thead>
         <tr>
-            "u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion"
             <th width="5%">License</th>
             <th width="5%">Prénom</th>
             <th width="5%">Nom de famille</th>
@@ -56,6 +52,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
         <tbody>
         <?php foreach ($employes as $employe) { ?>
             <tr>
+
                 <td><?php echo xss_clean($employe["identifier"]); ?></td>
                 <td><?php echo xss_clean($employe["firstname"]); ?></td>
                 <td><?php echo xss_clean($employe["lastname"]); ?></td>
@@ -63,6 +60,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
                 <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
             </tr>
         <?php } ?>
+        <!--<pre><?php var_dump($employes);?></pre>-->
         </tbody>
     </table>
 
