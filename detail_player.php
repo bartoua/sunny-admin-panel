@@ -17,6 +17,8 @@ if (!empty($identifier)) {
     // Get result of the query.
     $row = $db->arraybuilder()->paginate('users', 1, $select);
 
+
+    // Nice name for job
     $selectjob = array('label');
     $db->where('name', $row[0]["job"]);
     $job = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
@@ -25,6 +27,16 @@ if (!empty($identifier)) {
     $db->where('job_name', $row[0]["job"]);
     $db->where('grade', $row[0]["job_grade"]);
     $job_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
+
+    // Nice name for job2
+    $selectjob = array('label');
+    $db->where('name', $row[0]["job2"]);
+    $job2 = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
+
+    $selectgrade = array('label');
+    $db->where('job_name', $row[0]["job2"]);
+    $db->where('grade', $row[0]["job2_grade"]);
+    $job2_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
 
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
 
@@ -85,7 +97,7 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Métier secondaire</td>
-        <td><?php echo xss_clean($row[0]["job2"] . " / " . $row[0]["job2_grade"]); ?></td>
+        <td><?php echo xss_clean($job2 . " / " . $job2_grade); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
