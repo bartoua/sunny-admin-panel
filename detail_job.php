@@ -6,11 +6,11 @@ require_once BASE_PATH . '/includes/auth_validate.php';
 $job = filter_input(INPUT_GET, 'job');
 if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db = getDbInstanceFivem();
-
+    $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion");
     $db->join("users u", "u.job_grade=j.grade");
     $db->where("u.job", $job);
-    $employes = $db->get ("job_grades j", null, "u.identifier, u.firstname, u.lastname, j.label, u.lastconnexion");
-    print_r("<pre>" . $employes . "</pre>");
+    $employes = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
+    print_r($employes);
 die();
 
     // Set pagination limit
