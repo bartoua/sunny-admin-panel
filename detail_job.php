@@ -12,8 +12,6 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db->where("u.job", $job);
     $db->orderBy("u.job_grade","desc");
     $employes = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
-    print_r($employes);
-die();
 
     // Set pagination limit
     $db->pageLimit = 30;
