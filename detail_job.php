@@ -10,7 +10,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db->join("users u", "u.job_grade=j.grade");
     $db->where("u.job", $job);
     $employes = $db->get ("job_grades j", null, "u.identifier, u.firstname, u.lastname, j.label, u.lastconnexion");
-    print_r ($employes);
+    print_r ("<pre>" . $employes . "</pre>");
 die();
 
     // Set pagination limit
