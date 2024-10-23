@@ -16,7 +16,15 @@ if (!empty($identifier)) {
     $db->pageLimit = 1;
     // Get result of the query.
     $row = $db->arraybuilder()->paginate('users', 1, $select);
-    $total_pages = $db->totalPages;
+
+    $selectjob = array('label');
+    $db->where('name', $row[0]["job"]);
+    $job = $db->arraybuilder()->paginate('jobs', 1, $selectjob)[0]["label"];
+
+    $selectgrade = array('label');
+    $db->where('job_name', $row[0]["job"]);
+    $db->where('job_grade', $row[0]["job_grade"]);
+    $job_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
 
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
 
@@ -72,7 +80,7 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Métier principal</td>
-        <td><?php echo xss_clean($row[0]["job"] . " / " . $row[0]["job_grade"]); ?></td>
+        <td><?php echo xss_clean($job . " / " . $job_grade); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
