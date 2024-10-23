@@ -23,7 +23,7 @@ if (!empty($identifier)) {
 
     $selectgrade = array('label');
     $db->where('job_name', $row[0]["job"]);
-    $db->where('job_grade', $row[0]["job_grade"]);
+    $db->where('grade', $row[0]["job_grade"]);
     $job_grade = $db->arraybuilder()->paginate('job_grades', 1, $selectjob)[0]["label"];
 
     $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
