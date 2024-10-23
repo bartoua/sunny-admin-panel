@@ -21,7 +21,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $employes2 = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
 
     $selectcoffre = array("name", "data");
-    $db->where("name", "society" . $job . "%", "like");
+    $db->where("name", 'society_' . $job . '%', "like");
     $coffres = $db->arraybuilder()->paginate('ox_inventory', 1, $selectcoffre);
 
     // Set pagination limit
