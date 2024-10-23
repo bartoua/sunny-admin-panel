@@ -6,7 +6,7 @@ require_once BASE_PATH . '/includes/auth_validate.php';
 $job = filter_input(INPUT_GET, 'job');
 if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     $db = getDbInstanceFivem();
-    $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion");
+    $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion", "u.job");
     $db->join("users u", "u.job_grade=j.grade");
     $db->joinWhere("users u", "u.job = j.job_name");
     $db->where("u.job", $job);
@@ -37,7 +37,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Joueur : <?php echo xss_clean($row[0]["firstname"] . " " . $row[0]["lastname"]); ?></h1>
+            <h1 class="page-header">Joueur : <?php echo xss_clean($employes[0]["job"]); ?></h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
