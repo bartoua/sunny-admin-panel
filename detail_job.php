@@ -7,7 +7,7 @@ $job = filter_input(INPUT_GET, 'job');
 if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
 
     $db = getDbInstanceFivem();
-    $db->pageLimit = 30;
+    $db->pageLimit = 3000;
 
     $selectjob = array("u.identifier", "u.firstname", "u.lastname", "j.label", "u.lastconnexion", "u.job");
     $db->join("users u", "u.job_grade=j.grade");
