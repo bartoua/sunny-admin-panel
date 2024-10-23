@@ -24,7 +24,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Joueur : <?php echo xss_clean($employes[0]["job"]); ?></h1>
+            <h1 class="page-header">Entreprise : <?php echo xss_clean($employes[0]["job"]); ?></h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
