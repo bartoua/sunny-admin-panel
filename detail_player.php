@@ -57,7 +57,7 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Argent liquide</td>
-        <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["money"]), "$")); ?></td>
+        <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["money"]), "USD")); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
