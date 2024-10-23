@@ -17,7 +17,7 @@ if (!empty($job) and str_starts_with($job, "sunnygroupe")) {
     $employes2 = $db->arraybuilder()->paginate('job_grades j', 1, $selectjob);
 
     $selectcoffre = array("name", "data");
-    $db->where("name", 'society_' . $job . '%', "like");
+    $db->where("name", 'society_' . $job);
     $coffres = $db->arraybuilder()->paginate('ox_inventory', 1, $selectcoffre);
 
     // Set pagination limit
@@ -30,7 +30,7 @@ if (!empty($job) and str_starts_with($job, "sunnygroupe")) {
     <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Entreprise : <?php echo xss_clean($employes[0]["job"]); ?></h1>
+            <h1 class="page-header">Entreprise : <?php echo xss_clean($employes2[0]["job2"]); ?></h1>
         </div>
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
