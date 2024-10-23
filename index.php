@@ -83,6 +83,7 @@ include_once('includes/header.php');
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $numGroupes; ?></div>
                             <div>Groupes</div>
+                            <pre><?php var_dump($numGroupes); ?></pre>
                         </div>
                     </div>
                 </div>
