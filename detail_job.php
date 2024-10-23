@@ -29,6 +29,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     </div>
     <?php include BASE_PATH . '/includes/flash_messages.php';?>
 
+    <h2>Job principal</h2>
     <table class="table table-striped table-bordered table-condensed">
         <thead>
         <tr>
