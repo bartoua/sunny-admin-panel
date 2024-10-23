@@ -105,7 +105,7 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
             </thead>
             <tbody>
             <?php foreach (json_decode($coffre["data"]) as $item) { ?>
-            <!--<pre><?php var_dump($item);?></pre>-->
+            <pre><?php var_dump($item);?></pre>
                 <tr>
                     <td><?php echo xss_clean($item["slot"]); ?></td>
                     <td><?php echo xss_clean($item["name"]); ?></td>
