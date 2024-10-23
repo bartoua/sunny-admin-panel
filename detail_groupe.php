@@ -57,7 +57,6 @@ if (!empty($job) and str_starts_with($job, "sunnygroupe")) {
                 <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
             </tr>
         <?php } ?>
-        <!--<pre><?php var_dump($employes);?></pre>-->
         </tbody>
     </table>
 
