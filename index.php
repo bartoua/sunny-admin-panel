@@ -8,8 +8,15 @@ $db = getDbInstance();
 $dbFivem = getDbInstanceFivem();
 
 //Get Dashboard information
-$numCustomers = $db->getValue ("customers", "count(*)");
 $numPlayers = $dbFivem->getValue ("users", "count(*)");
+
+$selectEntreprise = array("count(*)");
+$dbFivem->where("name", 'sunnygroupe%', "not like");
+$numEntreprises = $db->arraybuilder()->paginate('jobs', 1, $selectEntreprise)[0];
+
+$selectGroupes = array("count(*)");
+$dbFivem->where("name", 'sunnygroupe%', "like");
+$numGroupes = $db->arraybuilder()->paginate('jobs', 1, $selectGroupes)[0];
 
 include_once('includes/header.php');
 ?>
@@ -45,10 +52,48 @@ include_once('includes/header.php');
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-        
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $numEntreprises; ?></div>
+                            <div>Entreprise</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="players.php">
+                    <div class="panel-footer">
+                        <span class="pull-left">Liste des joueurs</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $numGroupes; ?></div>
+                            <div>Groupes</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="players.php">
+                    <div class="panel-footer">
+                        <span class="pull-left">Liste des joueurs</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <!-- /.row -->
