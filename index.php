@@ -12,11 +12,11 @@ $numPlayers = $dbFivem->getValue ("users", "count(*)");
 
 $selectEntreprise = array("count(*)");
 $dbFivem->where("name", 'sunnygroupe%', "not like");
-$numEntreprises = $db->arraybuilder()->paginate('jobs', 1, $selectEntreprise)[0];
+$numEntreprises = $dbFivem->arraybuilder()->paginate('jobs', 1, $selectEntreprise)[0];
 
 $selectGroupes = array("count(*)");
 $dbFivem->where("name", 'sunnygroupe%', "like");
-$numGroupes = $db->arraybuilder()->paginate('jobs', 1, $selectGroupes)[0];
+$numGroupes = $dbFivem->arraybuilder()->paginate('jobs', 1, $selectGroupes)[0];
 
 include_once('includes/header.php');
 ?>
