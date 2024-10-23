@@ -34,16 +34,90 @@ if (!empty($identifier)) {
     <tr>
         <th width="5%">Clef</th>
         <th width="20%">Valeur</th>
+        <th width="5%">Editer/Détail</th>
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($row[0] as $k => $v): ?>
-        <tr>
-            <td><?php echo xss_clean($k); ?></td>
-            <td><?php echo xss_clean($v); ?></td>
-        </tr>
-        <!-- //Delete Confirmation Modal -->
-    <?php endforeach;?>
+    <tr>
+        <td>License</td>
+        <td><?php echo xss_clean($row[0]["identifier"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Prénom</td>
+        <td><?php echo xss_clean($row[0]["firstname"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Nom de famille</td>
+        <td><?php echo xss_clean($row[0]["lastname"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Argent liquide</td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["money"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Argent sale</td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["black_money"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Compte en banque</td>
+        <td><?php echo xss_clean(json_decode($row[0]["identifier"])["bank"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Métier principal</td>
+        <td><?php echo xss_clean($row[0]["job"] . " / " . $row[0]["job_grade"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Métier secondaire</td>
+        <td><?php echo xss_clean($row[0]["job2"] . " / " . $row[0]["job2_grade"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Grade staff</td>
+        <td><?php echo xss_clean($row[0]["group"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Date de naissance</td>
+        <td><?php echo xss_clean($row[0]["dateofbirth"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Sexe</td>
+        <td><?php echo xss_clean(($row[0]["sex"] == "M" ? "Homme" : "Femme")); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Vote</td>
+        <td><?php echo xss_clean($row[0]["vote"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Bracelet</td>
+        <td><?php echo xss_clean(($row[0]["have_bracelet"] == 0 ? "Oui" : "Non")); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Matricule</td>
+        <td><?php echo xss_clean($row[0]["matricule"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Création du personnage</td>
+        <td><?php echo xss_clean($row[0]["firstSpawn"]); ?></td>
+        <td>Coucou</td>
+    </tr>
+    <tr>
+        <td>Dernière connexion</td>
+        <td><?php echo xss_clean($row[0]["lastconnexion"]); ?></td>
+        <td>Coucou</td>
+    </tr>
     </tbody>
 </table>
 
