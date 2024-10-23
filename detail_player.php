@@ -62,12 +62,12 @@ if (!empty($identifier)) {
     </tr>
     <tr>
         <td>Argent sale</td>
-        <td><?php echo xss_clean(json_decode($row[0]["accounts"], true)["black_money"]); ?></td>
+        <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["black_money"]), "USD")); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
         <td>Compte en banque</td>
-        <td><?php echo xss_clean(json_decode($row[0]["accounts"], true)["bank"]); ?></td>
+        <td><?php echo xss_clean($fmt->formatCurrency(floatval(json_decode($row[0]["accounts"], true)["bank"]), "USD")); ?></td>
         <td>Coucou</td>
     </tr>
     <tr>
