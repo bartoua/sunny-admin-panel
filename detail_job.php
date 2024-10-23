@@ -93,30 +93,29 @@ if (!empty($job) and !str_starts_with($job, "sunnygroupe")) {
     </table>
 
     <h2>Coffres</h2>
-    <table class="table table-striped table-bordered table-condensed">
-        <thead>
-        <tr>
-            <th width="5%">License</th>
-            <th width="5%">Prénom</th>
-            <th width="5%">Nom de famille</th>
-            <th width="5%">Grade</th>
-            <th width="5%">Dernière connexion</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($employes2 as $employe) { ?>
+    <?php foreach ($coffres as $coffre) { ?>
+        <h3><?php echo $coffre["name"]; ?></h3>
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
             <tr>
-
-                <td><?php echo xss_clean($employe["identifier"]); ?></td>
-                <td><?php echo xss_clean($employe["firstname"]); ?></td>
-                <td><?php echo xss_clean($employe["lastname"]); ?></td>
-                <td><?php echo xss_clean($employe["label"]); ?></td>
-                <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
+                <th width="5%">Emplacement</th>
+                <th width="5%">Item</th>
+                <th width="5%">Quantité</th>
             </tr>
-        <?php } ?>
-        <pre><?php var_dump($coffres);?></pre>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php foreach (json_decode($coffre["data"]) as $item) { ?>}
+            <pre><?php var_dump($item);?></pre>
+                <tr>
+                    <td><?php echo xss_clean($employe["identifier"]); ?></td>
+                    <td><?php echo xss_clean($employe["firstname"]); ?></td>
+                    <td><?php echo xss_clean($employe["lastname"]); ?></td>
+                    <td><?php echo xss_clean($employe["label"]); ?></td>
+                    <td><?php echo xss_clean($employe["lastconnexion"]); ?></td>
+                </tr>
+            </tbody>
+        </table>
+    <?php } ?>
 
     <!-- //Main container -->
     <?php include BASE_PATH . '/includes/footer.php';
